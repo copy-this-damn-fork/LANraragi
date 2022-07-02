@@ -32,8 +32,8 @@ note('testing getting tags from JSON ...');
     local *LANraragi::Plugin::Metadata::Hitomi::get_plugin_logger = sub { return get_logger_mock(); };
 
     my $json = Mojo::File->new("$SAMPLES/hitomi/2261881.js")->slurp;
-    note('json: ' . $json);
     $json = decode_json $json;
+    
     my @tags = LANraragi::Plugin::Metadata::Hitomi::get_tags_from_taglist($json);
 
     cmp_bag( \@tags, \@all_tags, 'tag list' );
@@ -47,11 +47,11 @@ note('testing getting title from JSON ...');
 
     my $json = Mojo::File->new("$SAMPLES/hitomi/2261881.js")->slurp;
     $json = decode_json $json;
+    
     my @tags = LANraragi::Plugin::Metadata::Hitomi::get_tags_from_taglist($json);
-
     my $title = LANraragi::Plugin::Metadata::Hitomi::get_title_from_json($json);
-    note('title: ' . $title);
-    #is( $title, 'Nakayoshi Onna Boukensha wa Yoru ni Naru to Yadoya de Mechakucha Ecchi Suru | Party of Female Adventurers Fuck a lot at the Inn Once Nighttime Comes.', 'title' );
+
+    is( $title, 'Nakayoshi Onna Boukensha wa Yoru ni Naru to Yadoya de Mechakucha Ecchi Suru | Party of Female Adventurers Fuck a lot at the Inn Once Nighttime Comes.', 'title' );
 }
 
 done_testing();
