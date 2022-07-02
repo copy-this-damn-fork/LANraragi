@@ -32,6 +32,8 @@ note('testing getting tags from JSON ...');
     local *LANraragi::Plugin::Metadata::Hitomi::get_plugin_logger = sub { return get_logger_mock(); };
 
     my $json = Mojo::File->new("$SAMPLES/hitomi/2261881.js")->slurp;
+    note('json: ' . $json);
+    $json = decode_json $json;
     my @tags = LANraragi::Plugin::Metadata::Hitomi::get_tags_from_taglist($json);
 
     cmp_bag( \@tags, \@all_tags, 'tag list' );
