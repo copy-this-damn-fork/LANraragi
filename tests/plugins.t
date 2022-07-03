@@ -19,6 +19,7 @@ use LANraragi::Plugin::Metadata::nHentai;
 use LANraragi::Plugin::Metadata::Chaika;
 use LANraragi::Plugin::Metadata::Eze;
 use LANraragi::Plugin::Metadata::Fakku;
+use LANraragi::Plugin::Metadata::Hitomi;
 
 # Mock Redis
 my $cwd = getcwd;
@@ -98,10 +99,10 @@ note("Hitomi Tests");
 
 {
      my $hi_gID      = "2261881";
-     my $hi_hashdata = trap { LANraragi::Plugin::Metadata::Hitomi::get_tags_from_Hitomi( $hi_gID, 1 ) };
+     my $hi_hashdata = trap { LANraragi::Plugin::Metadata::Hitomi::get_tags_from_Hitomi( $hi_gID, 1 ); };
 
-     ok( length( $hi_hashdata{tags} ) > 0,  'Hitomi API Tag retrieval test' );
-     ok( length( $hi_hashdata{title} ) > 0, 'Hitomi title test' );
+     ok( length( $hi_hashdata->{tags} ) > 0,  'Hitomi API Tag retrieval test' );
+     ok( length( $hi_hashdata->{title} ) > 0, 'Hitomi title test' );
 }
 
 
