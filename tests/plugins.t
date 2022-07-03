@@ -99,10 +99,10 @@ note("Hitomi Tests");
 
 {
      my $hi_gID      = "2261881";
-     my $hi_hashdata = trap { LANraragi::Plugin::Metadata::Hitomi::get_tags_from_Hitomi( $hi_gID, 1 ); };
-     note("hashdata: ". $hi_hashdata);
-     ok( length( $hi_hashdata->{tags} ) > 0,  'Hitomi API Tag retrieval test' );
-     ok( length( $hi_hashdata->{title} ) > 0, 'Hitomi title test' );
+     my %hi_hashdata = trap { LANraragi::Plugin::Metadata::Hitomi::get_tags_from_Hitomi( $hi_gID, 1 ); };
+
+     ok( length( %hi_hashdata{tags} ) > 0,  'Hitomi API Tag retrieval test' );
+     ok( length( %hi_hashdata{title} ) > 0, 'Hitomi title test' );
 }
 
 
